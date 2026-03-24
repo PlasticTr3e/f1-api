@@ -2,9 +2,9 @@ name: CS - Security Scan
 
 on:
     push:
-        branches: [main, develop, "feature/**"]
+        branches: [main, dev, "features/**"]
     pull_request:
-        branches: [main, develop]
+        branches: [main, dev]
 
 jobs:
     dependency-audit:
