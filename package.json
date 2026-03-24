@@ -1,0 +1,36 @@
+{
+  "name": "f1-api",
+  "version": "1.0.0",
+  "description": "a simple f1 race tracker API",
+  "homepage": "https://github.com/PlasticTr3e/f1-api#readme",
+  "bugs": {
+    "url": "https://github.com/PlasticTr3e/f1-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PlasticTr3e/f1-api.git"
+  },
+  "license": "ISC",
+  "author": "PlasticTrees",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
