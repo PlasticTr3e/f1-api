@@ -1,0 +1,27 @@
+services:
+  f1-api:
+    build: .
+    container_name: f1-api
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=postgresql://f1user:f1pass@postgres:5432/f1db?schema=public
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: f1-postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=f1user
+      - POSTGRES_PASSWORD=f1pass
+      - POSTGRES_DB=f1db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
