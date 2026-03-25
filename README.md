@@ -149,8 +149,8 @@ Penjelasan singkat:
 - Security Scan menjalankan `npm audit` untuk dependency scan pada setiap Push/PR.
 
 ```md
-![CI](https://github.com/PlasticTr3e/f1-api/actions/workflows/ci.yml/badge.svg)
-![Security](https://github.com/PlasticTr3e/f1-api/actions/workflows/security.yml/badge.svg)
+[![CI - Unit Test](https://github.com/PlasticTr3e/f1-api/actions/workflows/ci.yml/badge.svg)](https://github.com/PlasticTr3e/f1-api/actions/workflows/ci.yml)
+[![CS - Security Scan](https://github.com/PlasticTr3e/f1-api/actions/workflows/security.yml/badge.svg)](https://github.com/PlasticTr3e/f1-api/actions/workflows/security.yml)
 ```
 
 ## Menjalankan Test Lokal
