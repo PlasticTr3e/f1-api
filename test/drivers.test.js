@@ -19,10 +19,10 @@ describe("Drivers API", () => {
 
     afterAll(async () => {
         if (createdDriverId) {
-            try { await prisma.driver.delete({ where: { id: createdDriverId } }); } catch (e) {}
+            try { await prisma.driver.delete({ where: { id: createdDriverId } }); } catch (e) { }
         }
         if (fallbackTeamId) {
-            try { await prisma.team.delete({ where: { id: fallbackTeamId } }); } catch (e) {}
+            try { await prisma.team.delete({ where: { id: fallbackTeamId } }); } catch (e) { }
         }
         await prisma.$disconnect();
     });
@@ -30,9 +30,9 @@ describe("Drivers API", () => {
     it("POST /drivers should create a driver with a team", async () => {
         const res = await request(app)
             .post("/drivers")
-            .send({ 
-                firstName: "Lando", 
-                lastName: "Norris", 
+            .send({
+                firstName: "Lando",
+                lastName: "Norris",
                 raceNumber: uniqueDriverNumber,
                 nationality: "British",
                 teamId: fallbackTeamId
