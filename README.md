@@ -1,3 +1,6 @@
+[![CI - Unit Test](https://github.com/PlasticTr3e/f1-api/actions/workflows/ci.yml/badge.svg)](https://github.com/PlasticTr3e/f1-api/actions/workflows/ci.yml)
+[![CS - Security Scan](https://github.com/PlasticTr3e/f1-api/actions/workflows/security.yml/badge.svg)](https://github.com/PlasticTr3e/f1-api/actions/workflows/security.yml)
+
 # F1 Race Weekend Tracker API
 
 REST API untuk manajemen data akhir pekan balap Formula 1, meliputi tim, pembalap, sirkuit, balapan, dan hasil balapan.
@@ -147,11 +150,6 @@ Workflow yang tersedia:
 Penjelasan singkat:
 - CI menjalankan instalasi dependency, generate Prisma client, migrasi database, lalu test otomatis (`npm run test`) setiap Push/PR.
 - Security Scan menjalankan `npm audit` untuk dependency scan pada setiap Push/PR.
-
-```md
-[![CI - Unit Test](https://github.com/PlasticTr3e/f1-api/actions/workflows/ci.yml/badge.svg)](https://github.com/PlasticTr3e/f1-api/actions/workflows/ci.yml)
-[![CS - Security Scan](https://github.com/PlasticTr3e/f1-api/actions/workflows/security.yml/badge.svg)](https://github.com/PlasticTr3e/f1-api/actions/workflows/security.yml)
-```
 
 ## Menjalankan Test Lokal
 
