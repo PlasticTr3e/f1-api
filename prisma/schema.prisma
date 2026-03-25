@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../src/generated/prisma"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+model Team {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  base      String?
+  principal String?
+
+  drivers Driver[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Driver {
+  id          Int     @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  raceNumber  Int     @unique
+  nationality String?
+
+  teamId      Int?
+  team        Team?        @relation(fields: [teamId], references: [id], onDelete: SetNull)
+  raceResults RaceResult[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Circuit {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  location String
+  country  String
+  lenghKm  Float?
+
+  races Race[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Race {
+  id     Int      @id @default(autoincrement())
+  name   String
+  date   DateTime
+  season Int
+
+  circuitId Int
+  circuit   Circuit      @relation(fields: [circuitId], references: [id], onDelete: Restrict)
+  results   RaceResult[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, season])
+}
+
+model RaceResult {
+  id         Int     @id @default(autoincrement())
+  position   Int
+  points     Float   @default(0)
+  fastestLap Boolean @default(false)
+
+  raceId   Int
+  race     Race   @relation(fields: [raceId], references: [id], onDelete: Cascade)
+  driverId Int
+  driver   Driver @relation(fields: [driverId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([raceId, driverId])
+}
