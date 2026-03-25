@@ -2,6 +2,7 @@ services:
   f1-api:
     build: .
     container_name: f1-api
+    command: sh -c "npx prisma migrate deploy && npm start"
     ports:
       - "3000:3000"
     environment:
@@ -9,7 +10,8 @@ services:
       - PORT=3000
       - DATABASE_URL=postgresql://f1user:f1pass@postgres:5432/f1db?schema=public
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
   postgres:
     image: postgres:16-alpine
@@ -21,6 +23,11 @@ services:
       - POSTGRES_USER=f1user
       - POSTGRES_PASSWORD=f1pass
       - POSTGRES_DB=f1db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U f1user -d f1db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     volumes:
       - pgdata:/var/lib/postgresql/data
 volumes:
